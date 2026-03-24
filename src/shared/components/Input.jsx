@@ -6,29 +6,48 @@ export default function Input({
     //Curpo de la funcion 
     return(
         //Contenedor del input que se exporta con label curpo y feedback message
-          <div className="w-">
+          <div className="w-[320px]">
             {/* Label */ }
+
+         {label && (
+
             <label 
                 className="
                     block
-                    text-caption
+                    text-[8px]
                     mb-1
-                    text-text-primary
+
+
                 ">
 
                     {label}
 
             </label>
+
+         )}   
+
+
+
+
+
             {/* contenedor del input */ }
-            <div>
+            <div
+                className="
+                relative
+                h-12
+                flex
+                items-center
+                place-self-end
+
+                " >
 
                 {/* Area interactiva invisible de un input 48px */ }
+                <div 
+                    className="
+                        absolute
+                        inset-0
 
-                <div className="
-                    absolute
-                    inset-0
-
-                "
+                    "
                 onMouseDown={(e) => {
                     e.preventDefault();
                     
@@ -36,13 +55,14 @@ export default function Input({
 
                 }}
                 >
-
+                {/*=====================================================*/ }    
 
 
                 </div>
 
                 {/*Area visual del input*/}
                 <input 
+                    type={type}
                     className="
                         relative
                         w-full
@@ -62,9 +82,7 @@ export default function Input({
                 "
                     {...props}
 
-               >
-
-                </input>
+             />
                
 
             </div>

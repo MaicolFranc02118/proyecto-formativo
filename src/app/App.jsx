@@ -1,19 +1,15 @@
-import Input from "../shared/components/Input.jsx"
+import { CreateUserPage } from "@/features/users";
 
 export default function App(){
   return(
-    <div className="min-h-screen bg-green-800 flex items-center justify-center">
-      <h1 className="text-white text-4xl font-bold">
-        Con Rico programar tailwind v4 funciona full...
+    <div className="min-h  text-center grid grid-cols-1 gab-4 ">
+      <h1 className="text-white  text-4xl font-bold bg-fuchsia-800 p-6">
+        Con Rico programar  Maicol..
       </h1>
 
-      <Input
-      label="Nombre"
-      placeholder="Ingrese su nombre"
-      
-      
-      />
+      <CreateUserPage />
+
   
     </div>
-  )
+  );
 }
