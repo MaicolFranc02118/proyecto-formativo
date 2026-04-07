@@ -13,7 +13,7 @@ export default function Button({
 }){
     
     const variants = {
-        primary: "bg-green  text-brand border",
+        primary: "bg-green  text-brand border text-h1",
         secondary: "bg-background border boreder-border text-text-inverse hover:bg-surface-muted",
     };
 

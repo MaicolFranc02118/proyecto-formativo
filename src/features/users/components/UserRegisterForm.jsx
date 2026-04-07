@@ -1,8 +1,18 @@
-import { Input, Button } from "@/shared";
+import { useState, useEffect } from "react";
+import { getDocumentTypes } from "@/features/users/services/selectService";
+import { Input, Button, DeleteCaunter, DeleteEffect, DeleteCounter2, Select } from "@/shared";
+
 
 export default function UserRegisterForm() {
 
-    
+    const [ documentTypes, setDocumentTypes] = useState([]);
+
+    useEffect(() => {
+        getDocumentTypes().then(setDocumentTypes);
+
+    },[]);
+
+        //Hadle
           const handleNameChange = (e) => {
             console.log("Nombre:" + e.target.value)
 
@@ -18,9 +28,11 @@ export default function UserRegisterForm() {
             <h1 className=" text-text-primary text-2xl mb-6">
               Registro de usuario 
             </h1>
+
             <form className="grid grid-cols-1 items-center gap-6 ">
+                
               {/**Inputs */}
-              <div className="grid grid-cols-2 my-0 mx-auto gap-6">
+              <div className="grid grid-cols-2 my-0 mx-auto gap-6 ">
                  <Input
                     label="Nombre"
                     placeholder="Ingrese su nombre"
@@ -70,6 +82,12 @@ export default function UserRegisterForm() {
                     type="number"
                    />
 
+                <Select
+                    label="Tipo de documento"
+                    name="documentType"
+                    options={documentTypes}
+                   />
+
                     {/* Actions */}
                 <div className="flex items-end  justify-end gap-12">
                     <Button
@@ -85,13 +103,19 @@ export default function UserRegisterForm() {
                     >
                         Guardar
                     </Button>
+
+
                 </div>
 
               </div>
-               
-
 
             </form>
+
+              {/* <DeleteCaunter/> 
+              <DeleteEffect/> */}
+              <DeleteCounter2/>
+
+
         </div>
     );
 }
