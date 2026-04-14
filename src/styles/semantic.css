@@ -21,7 +21,7 @@
     --semantic-text-primary: var(--gray-900);/*Color principal de lecturas, titulos, textos baseadocumentos*/
     --semantic-text-secondary: var(--color-gray-700); /*textos menos dominantes*/
     --semantic-text-muted: var(--color-gray-500); /*texto desabilitado por ejemplo */
-    --semantic-text-secondary: var(--color-gray-50); /*texto invertido*/
+    --semantic-text-secondary: var(--color-white); /*texto invertido*/
 
 
     /*BORDER*/
