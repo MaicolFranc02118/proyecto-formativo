@@ -1,6 +1,7 @@
 export default function Input({
     label,
     type = "text",
+    error,
     ...props
 }){
     //Curpo de la funcion 
@@ -12,34 +13,29 @@ export default function Input({
          {label && (
 
             <label 
-                className="
+                className={
+                    `
                     block
                     text-[8px]
                     mb-1
-
-
-                ">
-
+                    place-self-start
+                    ${error ? "text-red-600" : "text-text-primary"}
+                `}
+            >
                     {label}
-
             </label>
-
          )}   
-
-
-
 
 
             {/* contenedor del input */ }
             <div
                 className="
-                relative
-                h-12
-                flex
-                items-center
-                place-self-end
-
-                " >
+                    relative
+                    h-12
+                    flex
+                    items-center
+                " 
+            >
 
                 {/* Area interactiva invisible de un input 48px */ }
                 <div 
@@ -54,16 +50,15 @@ export default function Input({
                     e.currentTarget.nextSibling.focus();
 
                 }}
-                >
+                />
                 {/*=====================================================*/ }    
 
 
-                </div>
-
+                
                 {/*Area visual del input*/}
                 <input 
                     type={type}
-                    className="
+                    className={`
                         relative
                         w-full
                         h-12
@@ -72,14 +67,18 @@ export default function Input({
                         border-border
                         px-4
                         text-base
+                        
+                        hover:
+                        hover:border-2
+                        hover:border-focus-border
 
                         focus:outline-none
-                        focus:ring-2
-                        focus:riing-focus-ring
-                        focus:border-focus-border
-
-                
-                "
+                        focus:ring-1
+                        focus:ring-focus-ring
+                        ${error ? "border-red-600": "text-text-primary"}
+                    
+                        
+                        `}
                     {...props}
 
              />
@@ -87,6 +86,7 @@ export default function Input({
 
             </div>
               {/*Feedback message */}
+              {error && <p className="text-caption text-red-600 place-self-start">{error}</p>}
 
 
           </div>
