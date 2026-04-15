@@ -12,8 +12,12 @@ export default function Select({
             {label && (
                     
                 <label className={`
-                     block
-                     text-caption mnb-1 text-text-primary place-self-start ${error ? "text-red-600" : "text-text-primary"}
+                    block
+                    text-caption
+                    mnb-1 
+                    text-text-primary 
+                    place-self-start 
+                    ${error ? "text-red-600" : "text-text-primary"}
 
                     `}
                 

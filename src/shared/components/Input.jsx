@@ -20,7 +20,7 @@ export default function Input({
                     mb-1
                     place-self-start
                     ${error ? "text-red-600" : "text-text-primary"}
-                `}
+                 `}
             >
                     {label}
             </label>
@@ -36,25 +36,19 @@ export default function Input({
                     items-center
                 " 
             >
-
                 {/* Area interactiva invisible de un input 48px */ }
                 <div 
                     className="
                         absolute
                         inset-0
-
-                    "
-                onMouseDown={(e) => {
-                    e.preventDefault();
-                    
-                    e.currentTarget.nextSibling.focus();
-
-                }}
+                        "
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                        
+                        e.currentTarget.nextSibling.focus();
+                    }}
                 />
                 {/*=====================================================*/ }    
-
-
-                
                 {/*Area visual del input*/}
                 <input 
                     type={type}
@@ -77,18 +71,14 @@ export default function Input({
                         focus:ring-focus-ring
                         ${error ? "border-red-600": "text-text-primary"}
                     
-                        
                         `}
                     {...props}
 
              />
-               
-
+            
             </div>
               {/*Feedback message */}
               {error && <p className="text-caption text-red-600 place-self-start">{error}</p>}
-
-
           </div>
 
     )

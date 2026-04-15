@@ -47,19 +47,15 @@ export default function UserRegisterForm() {
     }
     
     //=======================================================================//
-    //                              HANDLE submit
+    //                               HANDLE SUBMIT 
     //=======================================================================//
 
     /**
      * Funcion que se ejecuta cuando se envia al formulario 
      */
-   //============== HANDLE SUBMIT ==============
 
-// Función que se ejecuta cuando se envía el formulario
-//============== HANDLE SUBMIT ==============
-
-// Función que se ejecuta cuando se envía el formulario
-const handleSubmit = (e) => {
+    // Función que se ejecuta cuando se envía el formulario
+    const handleSubmit = (e) => {
     // Evita que el formulario recargue la página
     e.preventDefault();
 
@@ -97,7 +93,6 @@ const handleSubmit = (e) => {
 
     return (
         <div>
-
             <h1 className=" text-text-primary text-2xl mb-6">
               Registro de usuario 
             </h1>
@@ -105,9 +100,8 @@ const handleSubmit = (e) => {
             <form 
                 className="grid grid-cols-1 items-center gap-6 "
                 onSubmit={handleSubmit}
-                >
-            
-                
+             >
+   
               {/**Inputs */}
               <div className="grid grid-cols-2 my-0 mx-auto gap-6 ">
 
@@ -119,7 +113,6 @@ const handleSubmit = (e) => {
                         onChange={handleChange}
                         error={errors.userName}
                     />
-                 
                     <Input   
                         label="Correo"   
                         name="userEmail"                 
@@ -131,7 +124,6 @@ const handleSubmit = (e) => {
 
 
                     />
-
                     <Input
                         label="Telefono"
                         name="userPhone"
@@ -140,10 +132,7 @@ const handleSubmit = (e) => {
                         value={formData.userPhone}
                         onChange={handleChange}
                         error={errors.userPhone}
-
-
                     />
-
                     <Select
                         label="Tipo de documento"
                         name="userDocumentType"
@@ -152,7 +141,6 @@ const handleSubmit = (e) => {
                         onChange={handleChange}
                         error={errors.userDocumentType}
                     />
-
                     <Input
                         label="numero de documento"
                         name="userDocumentNamber"
@@ -160,10 +148,7 @@ const handleSubmit = (e) => {
                         value={formData.userDocumentNumber}
                         onChange={handleChange}
                         error={errors.userDocumentNumber}
-
-
                     />
-                    
                     <Input        
                         label="Contraseña"
                         name="userPassword"
@@ -172,8 +157,6 @@ const handleSubmit = (e) => {
                         value={formData.userPassword}
                         onChange={handleChange}
                         error={errors.userPassword}
-
-
                     />
              
                     {/* Actions */}

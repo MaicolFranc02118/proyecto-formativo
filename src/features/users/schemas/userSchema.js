@@ -31,4 +31,5 @@ export const userSchema = z.object({
         .regex(/[a-z]/, "Debe contener al menos una minuscula")
         .regex(/[0-9]/, "Debe contener al menos un numero")
         .regex(/[^A-Za-z0-9]/, "Debe contener al menos un caracter especial"),
+        
 })
