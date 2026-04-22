@@ -143,7 +143,7 @@ export default function UserRegisterForm() {
                     />
                     <Input
                         label="numero de documento"
-                        name="userDocumentNamber"
+                        name="userDocumentNumber"
                         placeholder="Ingrese su numero de documento"
                         value={formData.userDocumentNumber}
                         onChange={handleChange}
