@@ -4,5 +4,6 @@ export { default as DeleteCaunter } from "./components/DeleteCaunter";
 export { default as DeleteEffect } from "./components/DeleteEffect";
 export { default as DeleteCounter2 } from "./components/DeleteCounter2";
 export { default as Select } from "./components/Select";
+export { default as Checkbox } from "./components/Checkbox";
 
 
