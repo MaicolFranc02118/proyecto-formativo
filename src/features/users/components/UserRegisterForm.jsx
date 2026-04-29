@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { getDocumentTypes } from "@/features/users/services/selectService";
 import { userSchema } from "../schemas/userSchema";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { SquareArrowRightEnter, Menu } from "lucide-react";
+import { SquareArrowLeft } from "lucide-react";
 
 
-import { Input, Button,DeleteCounter2, Select, Checkbox } from "@/shared";
+import { Input, Button,DeleteCounter2, Select, Checkbox, IconButton,Dropdown, DropdownTrigger, DropdownItem, DropdownContent } from "@/shared";
 
 
 export default function UserRegisterForm() {
+    const navigate = useNavigate();
 
     const [ documentTypes, setDocumentTypes] = useState([]);
     //Estado
@@ -100,17 +104,17 @@ export default function UserRegisterForm() {
 
     return (
         <div>
-            <h1 className=" text-text-primary text-2xl mb-6">
+            <h1 className=" text-text-primary text-2xl mb-6 text-center pd-6 ">
               Registro de usuario 
-            </h1>
-
+            </h1> 
+ 
             <form 
                 className="grid grid-cols-1 items-center gap-6 "
                 onSubmit={handleSubmit}
              >
    
               {/**Inputs */}
-              <div className="grid grid-cols-2 my-0 mx-auto gap-6 ">
+              <div className="grid grid-cols-2 my-0 mx-auto gap-6  border p-[24px] rounded-2xl">
 
                     <Input
                         label="Nombre"
@@ -190,34 +194,84 @@ export default function UserRegisterForm() {
                         onChange={handleChange}
                     
                     />
-             
-                    {/* Actions */}
-                    <div className="flex items-end justify-end gap-12">
+                {/* Actions */}
+                <div className="flex items-end  justify-end gap-6">
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick = {() => navigate(-1)}
+                    >
+                        Cancelar
+                    </Button>
 
-                        <Button
-                            variant="secondary"
-                            size="sm"
-                        >
-                            Cancelar
-                        </Button>
+                    <Button
+                        variant="primary"
+                        size="md"
+                    >
+                        Guardar
+                    </Button>
 
-                        <Button
-                            variant="primary"
-                            size="md"
-                        >
-                            Guardar
-                        </Button>
+                     {/* Icon Button  */}
 
+                    <Link to = "/dashboard">
+                        <IconButton>
+                            <SquareArrowRightEnter></SquareArrowRightEnter>
+                        </IconButton> 
+                        
+                    </Link>
+
+                   {/* Dropdown */}
+
+                    <div className="p-10">
+                        <Dropdown>
+                            <DropdownTrigger>
+                                <IconButton ariaLabel="Menu de usario">
+                                    <Menu/>
+                                </IconButton>
+                            </DropdownTrigger>
+
+                            <DropdownContent className="right-0 w-48">
+                                <DropdownItem>
+                                    <Link to="/auth" className="block w-full">
+                                        Autenticacion
+                                    </Link>
+                                </DropdownItem>
+
+                                <DropdownItem>
+                                    <Link to="/dashboard" className="block w-full">
+                                        Panel de control
+                                    </Link>
+                                </DropdownItem>
+                            </DropdownContent>
+                        </Dropdown>
                     </div>
 
+                   {/* 
+                    <a href="/DashboardLayout">
+                    <IconButton>
+                        <SquareArrowRightEnter/>
+                    </IconButton>
+                    </a> */}
+
+                    {/* <IconButton  onClick = {() => navigate("/DashboardLayout")}>
+                        <SquareArrowRightEnter></SquareArrowRightEnter>
+                    </IconButton>
+                     */}
+                  
+                </div>
+
               </div>
+               
+
 
             </form>
 
-            {/* <DeleteCaunter/> 
-            <DeleteEffect/> */}
-            <DeleteCounter2/>
 
         </div>
     );
 }
+                    
+
+
+
+           
