@@ -212,7 +212,6 @@ export default function UserRegisterForm() {
                     </Button>
 
                      {/* Icon Button  */}
-
                     <Link to = "/dashboard">
                         <IconButton>
                             <SquareArrowRightEnter></SquareArrowRightEnter>

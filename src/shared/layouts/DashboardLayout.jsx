@@ -4,7 +4,7 @@ import {CreateUserPage } from "@/features/users";
 import { Link, Navigate } from "react-router-dom";
 import { SquareArrowLeft } from "lucide-react";
 import { IconButton } from "@/shared";
-
+import { Navbar } from "@/shared";
 export default function MainLayout(){
     return(
         <div className="relative min-h-screen text-text-primary ">
@@ -13,14 +13,14 @@ export default function MainLayout(){
              className="absolute inset-0 -z-10 bg-cover bg-center"
              style = {{backgroundImage: `url(${heroBg})`}}
              />
+                <Navbar/>
+                {/* Contenido dinamoco de las paginas*/}
 
-               <Link to = "/auth">
-                        <IconButton>
-                            <SquareArrowLeft></SquareArrowLeft>
-                        </IconButton> 
-                        
-                    </Link>
-             
+                <main>
+                    <Outlet/>
+                </main>
+
+ 
          </div>
     );
 }
