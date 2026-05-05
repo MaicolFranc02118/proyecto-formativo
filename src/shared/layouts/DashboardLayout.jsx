@@ -5,6 +5,8 @@ import { Link, Navigate } from "react-router-dom";
 import { SquareArrowLeft } from "lucide-react";
 import { IconButton } from "@/shared";
 import { Navbar } from "@/shared";
+import { HomePage } from "@/features/home";
+
 export default function MainLayout(){
     return(
         <div className="relative min-h-screen text-text-primary ">
@@ -17,6 +19,7 @@ export default function MainLayout(){
                 {/* Contenido dinamoco de las paginas*/}
 
                 <main>
+                    <HomePage/>
                     <Outlet/>
                 </main>
 

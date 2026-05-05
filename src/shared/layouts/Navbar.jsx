@@ -1,10 +1,22 @@
 import { Search, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { IconButton,Dropdown, DropdownTrigger, DropdownItem, DropdownContent  } from "@/shared";
+import { IconButton, Switch, Dropdown, DropdownTrigger, DropdownItem, DropdownContent  } from "@/shared";
 import  logo  from "@/assets/images/logo-2.png";
+import { useState } from "react";
+
 
 //Declaracion de una funcion 
 export default function Navbar(){
+    // estado que controla el swicth
+    const [isActive, setIsActive] = useState(true);
+
+    // Manejador del estado del swicth
+    const handleStatusChange = (value) => {
+        setIsActive(value);
+
+        //aqui generalmente va el llamado 
+        console.log("Nuevo estado", value)
+    }
 
     return(
         <nav className="w-full bg-transparent border-b-2">
@@ -16,6 +28,14 @@ export default function Navbar(){
                             <img src={logo} alt="logo" className="h-12  "/>
                         </Link>
                     </div>
+
+                        {/* Switch */}
+                        <Switch
+                        cheked={isActive}
+                        onChange={handleStatusChange}
+                        size="md"
+                        />
+
                     {/* Links de navegacion */}
                     <ul className="hidden md:flex items-center gap-6">
                         <li>
