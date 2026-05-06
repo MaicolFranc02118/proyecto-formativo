@@ -1,4 +1,6 @@
+export { fileSchema } from "./schemas/fileSchema";
 export { default as Input } from "./components/Input";
+export { default as FileInput } from "./components/FileInput";//===================
 export { default as Button } from "./components/Button";
 export { default as Card } from "./components/Card";//==========================
 export { default as DeleteCaunter } from "./components/DeleteCaunter";
@@ -12,6 +14,8 @@ export { default as AuthLayout } from "./layouts/AuthLayout";
 export { default as DashboardLayout } from "./layouts/DashboardLayout";
 export { default as Navbar } from "./layouts/Navbar";
 export { default as Switch } from "./components/Switch";
+
+
 
 
 // export { default as CallToActionLayout} from "./layouts/CallToActionLayout";

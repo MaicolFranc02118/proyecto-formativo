@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { getDocumentTypes } from "@/features/users/services/selectService";
 import { userSchema } from "../schemas/userSchema";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { SquareArrowRightEnter, Menu } from "lucide-react";
+import { SquareArrowRightEnter, Menu, File } from "lucide-react";
 import { SquareArrowLeft } from "lucide-react";
 
 
-import { Input, Button,DeleteCounter2, Select, Checkbox, IconButton,Dropdown, DropdownTrigger, DropdownItem, DropdownContent } from "@/shared";
+import { Input, Button,DeleteCounter2, Select, Checkbox, IconButton,Dropdown, DropdownTrigger, DropdownItem, DropdownContent, FileInput } from "@/shared";
 
 
 export default function UserRegisterForm() {
@@ -22,6 +22,7 @@ export default function UserRegisterForm() {
         userDocumentType: "",
         userDocumentNumber: "",
         userPassword: "",
+        userImage: [],
 
         //Flags booleanos
         isStaff: false,
@@ -38,22 +39,12 @@ export default function UserRegisterForm() {
     //                              HANDLE GENERICO
     //=======================================================================//
 
-    /**
-     * Funcion que se ejecuta cada vez que cambia el valor de un input del
-     * formulario
-     * cuando el usuario escribe cambia los nuevos datos 
-     */
     const handleChange = (e) => {
-        //se obtiene el nombre del campo y su valor 
         const { name, value, type, checked } = e.target;
 
         setFormData((prev) => ({
-            //se copian todos los valores anteriores del estado
             ...prev,
-
-            //Se actualiza unicamnete lo que cambio 
             [name]: type === "checkbox" ? checked : value,
-
         }));
     }
     
@@ -61,44 +52,24 @@ export default function UserRegisterForm() {
     //                               HANDLE SUBMIT 
     //=======================================================================//
 
-    /**
-     * Funcion que se ejecuta cuando se envia al formulario 
-     */
-
-    // Función que se ejecuta cuando se envía el formulario
     const handleSubmit = (e) => {
-    // Evita que el formulario recargue la página
     e.preventDefault();
 
-    // Se valida el objeto formData usando el esquema definido con Zod
-    // safeParse devuelve un objeto indicando si la validación fue exitosa o no
     const result = userSchema.safeParse(formData);
 
-    // Si la validación falla
     if (!result.success) {
-        // Objeto donde se almacenarán los errores por campo
         const fieldErrors = {};
 
-        // Zod devuelve los errores en un arreglo llamado issues
-        // Se recorren para asociar cada error a su campo correspondiente
         result.error.issues.forEach((issue) => {
-            // issue.path contiene la ruta del campo que falló
             const field = issue.path[0];
-
-            // Se guarda el mensaje de error en el objeto fieldErrors
             fieldErrors[field] = issue.message;
         });
 
-        // Se actualiza el estado de errores para mostrarlos en el formulario
         setErrors(fieldErrors);
-
-        // Se detiene la ejecución porque el formulario tiene errores
         return;
     }
-    // Si la validación es exitosa se limpian los errores anteriores
-    setErrors({});
 
-    // result.data contiene los datos ya validados por Zod
+    setErrors({});
     console.log("Usuario válido:", result.data);
 };
 
@@ -113,7 +84,6 @@ export default function UserRegisterForm() {
                 onSubmit={handleSubmit}
              >
    
-              {/**Inputs */}
               <div className="grid grid-cols-2 my-0 mx-auto gap-6  border p-[24px] rounded-2xl">
 
                     <Input
@@ -132,8 +102,6 @@ export default function UserRegisterForm() {
                         value={formData.userEmail}
                         onChange={handleChange}
                         error={errors.userEmail}
-
-
                     />
                     <Input
                         label="Telefono"
@@ -176,7 +144,6 @@ export default function UserRegisterForm() {
                         label="Es administrador"
                         checked={formData.isStaff}
                         onChange={handleChange}
-                    
                     />
                     <Checkbox
                         id="isActive"
@@ -192,9 +159,29 @@ export default function UserRegisterForm() {
                         label="Es super usuario"
                         checked={formData.isSuperUser}
                         onChange={handleChange}
-                    
                     />
-                {/* Actions */}
+
+
+                <div>
+
+                    <h4>
+                        Maximo deben ser 12 
+                    </h4>
+                      <FileInput
+                        value={formData.userImage}
+                        onChange={(files) => 
+                            setFormData((prev) => ({...prev,  userImage: files}))
+                        }
+                        multiple={true}
+                    />
+                    {errors.userImage && (
+                        <span className="text-red-500 text-sm">{errors.userImage}</span>
+                    )}
+
+
+                </div>
+                  
+
                 <div className="flex items-end  justify-end gap-6">
                     <Button
                         variant="secondary"
@@ -211,15 +198,11 @@ export default function UserRegisterForm() {
                         Guardar
                     </Button>
 
-                     {/* Icon Button  */}
                     <Link to = "/dashboard">
                         <IconButton>
                             <SquareArrowRightEnter></SquareArrowRightEnter>
                         </IconButton> 
-                        
                     </Link>
-
-                   {/* Dropdown */}
 
                     <div className="p-10">
                         <Dropdown>
@@ -245,32 +228,10 @@ export default function UserRegisterForm() {
                         </Dropdown>
                     </div>
 
-                   {/* 
-                    <a href="/DashboardLayout">
-                    <IconButton>
-                        <SquareArrowRightEnter/>
-                    </IconButton>
-                    </a> */}
-
-                    {/* <IconButton  onClick = {() => navigate("/DashboardLayout")}>
-                        <SquareArrowRightEnter></SquareArrowRightEnter>
-                    </IconButton>
-                     */}
-                  
                 </div>
 
               </div>
-               
-
-
             </form>
-
-
         </div>
     );
 }
-                    
-
-
-
-           
