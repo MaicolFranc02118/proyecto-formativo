@@ -95,6 +95,7 @@ export function DropdownContent({ children, className = ""}) {
                 border
                 text-text-inverse
                 p-1
+                z-100
                 dark:bg-neutral-950/80
                 text-white
                 backdrop-blur-[1px]

@@ -19,7 +19,6 @@ export default function MainLayout(){
                 {/* Contenido dinamoco de las paginas*/}
 
                 <main>
-                    <HomePage/>
                     <Outlet/>
                 </main>
 

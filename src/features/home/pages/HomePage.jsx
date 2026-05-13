@@ -26,6 +26,7 @@ export default function HomePage() {
                 justify-center
                 "
             >
+                {/* Integracion que nos permite tarer los elemnetos de los productos */}
                 {products.map((product) => (
                     <Card
                         key={product.id}

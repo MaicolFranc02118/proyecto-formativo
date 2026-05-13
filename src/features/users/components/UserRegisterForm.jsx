@@ -84,7 +84,16 @@ export default function UserRegisterForm() {
                 onSubmit={handleSubmit}
              >
    
-              <div className="grid grid-cols-2 my-0 mx-auto gap-6  border p-[24px] rounded-2xl">
+            <div className="
+                grid grid-cols sm:grid-cols-2
+                gap-6 
+                my-auto 
+                mx-auto 
+                border 
+                p-[48px] 
+                rounded-[6px] 
+                "
+            >
 
                     <Input
                         label="Nombre"

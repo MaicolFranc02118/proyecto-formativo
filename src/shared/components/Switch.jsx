@@ -12,6 +12,7 @@ export default function Switch({
     disable = false,        //Permite deshabilitar la interaccion
     disabled,               //Tamaño del switch (sm, md, Lg)
     size = "md",
+    className,
 }) {
     /**Estado interno del componente
      * Se inicializa con el valor recibido desde la prop "checked", 
@@ -64,10 +65,11 @@ export default function Switch({
             onClick={handleToggle} // Evento que cambia el estado
             disabled={isDisabled} // Permite deshabilitar el botón
             className={`
-                relative inline-flex items-center rounded-full transition-colors
+                relative  items-center rounded-full transition-colors
                 ${sizes[size] ?? sizes.md}
                 ${isActive ? "bg-green-500" : "bg-gray-300"}
                 ${isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                ${className}
             `}
         >
 

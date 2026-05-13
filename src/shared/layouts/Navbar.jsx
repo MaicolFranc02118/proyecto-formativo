@@ -1,40 +1,48 @@
-import { Search, User } from "lucide-react";
+import { User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { IconButton, Switch, Dropdown, DropdownTrigger, DropdownItem, DropdownContent  } from "@/shared";
-import  logo  from "@/assets/images/logo-2.png";
+import { IconButton, Switch, Dropdown, DropdownTrigger, DropdownItem, DropdownContent } from "@/shared";
+import logo from "@/assets/images/logo-2.png";
 import { useState } from "react";
+import SearchField from "../components/SearchField";
 
 
-//Declaracion de una funcion 
-export default function Navbar(){
-    // estado que controla el swicth
+export default function Navbar() {
+    const [search, setSearch] = useState("");
+
+    const handleSearch = (value) => {
+        console.log("Buscar:", value);
+    };
+
+    const handleClear = () => {
+        console.log("Campo limpiado");
+    };
+
     const [isActive, setIsActive] = useState(true);
 
-    // Manejador del estado del swicth
     const handleStatusChange = (value) => {
         setIsActive(value);
+        console.log("Nuevo estado", value);
+    };
 
-        //aqui generalmente va el llamado 
-        console.log("Nuevo estado", value)
-    }
-
-    return(
+    return (
         <nav className="w-full bg-transparent border-b-2">
             <div className="mx-auto max-w-7xl px-4">
                 <div className="flex h-16 items-center justify-between">
-                    {/* El logo de marca*/}
-                    <div className="flex items-center">
-                        <Link to={"/"} className="text-h1 font-heading">
-                            <img src={logo} alt="logo" className="h-12  "/>
+
+                    {/* Logo */}
+                    <div className=" hidden sm:block flex items-center ">
+                        <Link to={"/dashboard/home"} className="text-h1 font-heading">
+                            <img src={logo} alt="logo" className="h-12 w-auto" />   
                         </Link>
                     </div>
 
-                        {/* Switch */}
-                        <Switch
-                        cheked={isActive}
+                    {/* Switch */}
+                    <Switch
+                        checked={isActive}
                         onChange={handleStatusChange}
                         size="md"
-                        />
+                        className="hidden sm:inline-flex"
+                    />
 
                     {/* Links de navegacion */}
                     <ul className="hidden md:flex items-center gap-6">
@@ -45,48 +53,41 @@ export default function Navbar(){
                         </li>
                         <li>
                             <Link to={"/inicio"} className="hover:text-primary transition">
-                                Cursos  
+                                Cursos
                             </Link>
                         </li>
                         <li>
                             <Link to={"/inicio"} className="hover:text-primary transition">
-                                Multomedia
+                                Multimedia
                             </Link>
                         </li>
                     </ul>
 
-                      {/* Seccion de la derecha: busqueda + usuario */}
-                    <div className="flex items-center gap-5">
-                            {/* Icono de busqueda */}
-                        <div className="relative hidden sm:block">
+                    {/* Buscador */}
+                    <SearchField
+                        value={search}
+                        OnChange={setSearch}   // ← aquí
+                        onSubmit={handleSearch}
+                        onClear={handleClear}
+                        placeholder="Buscar productos..."
+                        size="md"
+                        variant="outline    "
+                        className="w-76"
+                    />
 
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"/>
-
-                            {/* Input*/}
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="pl-9 pr-4 py-2.5 border rounded-lg 
-                            text-body focus:outline-none focus:ring-2
-                            focus:ring-text-primary"              
-                        /> 
-                        </div>   
-                        {/* Icono de usuario  */}
-                    
-                        {/* Dropdown */}
-
+                    {/* Dropdown usuario */}
                     <div className="p-10">
                         <Dropdown>
                             <DropdownTrigger>
-                                <IconButton ariaLabel="Menu de usario">
-                                    <User/>
+                                <IconButton ariaLabel="Menu de usuario">
+                                    <User />
                                 </IconButton>
                             </DropdownTrigger>
 
                             <DropdownContent className="right-0 w-48">
                                 <DropdownItem>
                                     <Link to="/dashboard/auth" className="block w-full">
-                                        Cerrrar sesion
+                                        Cerrar sesion
                                     </Link>
                                 </DropdownItem>
 
@@ -95,14 +96,17 @@ export default function Navbar(){
                                         Panel de control
                                     </Link>
                                 </DropdownItem>
+                                <DropdownItem>
+                                    <Link to="/dashboard/userList" className="block w-full">
+                                        Gestion de usuarios
+                                    </Link>
+                                </DropdownItem>
                             </DropdownContent>
                         </Dropdown>
                     </div>
-                        
-                    </div>  
+
                 </div>
             </div>
         </nav>
-    )
-
+    );
 }
