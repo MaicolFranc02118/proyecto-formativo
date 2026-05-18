@@ -12,9 +12,10 @@ export default function Button({
     ...props            //Propiedades adicionales como un (onclick, disable, etc)
 }){
     
+  
     const variants = {
-        primary: "bg-green  text-brand border text-body hover:bg-surface-muted hover:text-text-inverse",
-        secondary: "bg-background border boreder-border text-text-primary hover:bg-surface-muted hover:text-text-inverse",
+        primary: "bg-green text-brand border text-body hover:bg-brand-hover hover:text-white hover:border-brand-hover",
+        secondary: "bg-background border border-border text-text-primary hover:bg-brand-hover hover:text-white hover:border-brand-hover",
     };
 
     const sizes = {
