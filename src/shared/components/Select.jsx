@@ -4,7 +4,6 @@ export default function Select({
     error,
     value,
     onChange,
-
     options = [],
 }){
     return(
@@ -51,7 +50,10 @@ export default function Select({
                     Selecione una opcion</option>
                 {options.map((opt) => (
                     
-                    <option key={opt.id} value={opt.id} >
+                    <option 
+                        key={opt.value} 
+                        value={opt.value}
+                        >
                         {opt.label}
                     </option> 
                 ))}
