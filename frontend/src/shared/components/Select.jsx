@@ -46,7 +46,7 @@ export default function Select({
                     `}
                 
              >   
-                <option value="">
+                <option key="">
                     Selecione una opcion</option>
                 {options.map((opt) => (
                     
@@ -60,7 +60,7 @@ export default function Select({
             </select>
 
                {/*Feedback message */}
-              {error && <p className="text-caption text-red-600 place-self-start">{error}</p>}
+              {error && <p className="text-caption text-red-600 place-self-              start">{error}</p>}
 
         </div>
     )

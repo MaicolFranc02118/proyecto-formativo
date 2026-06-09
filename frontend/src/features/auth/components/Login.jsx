@@ -7,7 +7,8 @@ import {
   Input,
   Button,
 } from "@/shared";
-import { LoginSchema } from "../schemas/loginShema";
+// import { LoginSchema } from "../schemas/loginShema";
+import { loginSchema } from "../schemas/loginShema";
 
 
 
@@ -68,7 +69,7 @@ export default function UserRegisterForm() {
 
     // Se valida el objeto formData usando el esquema definido con Zod
     // safeParse devuelve un objeto indicando si la validación fue exitosa o no
-    const result = LoginSchema.safeParse(formData);
+    const result = loginSchema.safeParse(formData);
 
     // Si la validación falla
     if (!result.success) {

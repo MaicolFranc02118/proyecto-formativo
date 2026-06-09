@@ -23,7 +23,7 @@ export const userController = {
 
     try {
       // Llamamos al servicio de usuario, pasando los datos recibidos
-      // Aquí ocurre la lógica real de negocio (validaciones, persistencia, etc.)
+      // Aquí ocurre la lógica real de negocio (validaciones, persistencia,   etc.)
       const user = await userService.createUser(req.body);
 
 

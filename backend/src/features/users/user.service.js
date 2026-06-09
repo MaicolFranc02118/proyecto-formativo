@@ -2,7 +2,7 @@
 // El service depende del repository para acceder a la persistencia,
 // pero el repository NO debe conocer el service.
 import { userRepository } from "./user.repository.js";
-
+import bcrypt from "bcrypt"; // 👈 Agregar
 
 // Exportamos el servicio de usuarios.
 // El service representa la capa de lógica de negocio de la aplicación.
@@ -21,9 +21,16 @@ export const userService = {
     // - Verificaciones de unicidad (email, documento, etc.)
     // - Decisiones de negocio (roles, flags, estados iniciales)
 
+    //======= Hasheamos la contraseña antes de guardar===================
+    const hashedPassword = await bcrypt.hash(data.userPassword, 10);
+    const safeData = { ...data, userPassword: hashedPassword };
+
+
 
     // Actualmente, el método solo delega directamente al repository,
     // sin agregar ninguna lógica adicional.
-    return await userRepository.create(data);
+    
+    //=====cambiamos  DATA POR SAFEDATA======
+    return await userRepository.create(safeData);
   },
 };
