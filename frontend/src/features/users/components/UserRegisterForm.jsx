@@ -2,19 +2,17 @@ import { useState, useEffect } from "react";
 import { getDocumentTypes } from "@/features/users/services/selectService";
 import { userSchema } from "../schemas/userSchema";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { SquareArrowRightEnter, Menu, File } from "lucide-react";
-import { SquareArrowLeft } from "lucide-react";
 import { createUser } from "../services/userService";
 
 
-import { Input, Button,DeleteCounter2, Select, Checkbox, IconButton,Dropdown, DropdownTrigger, DropdownItem, DropdownContent, FileInput } from "@/shared";
+import { Input, Button,DeleteCounter2, Select, Checkbox, IconButton, FileInput } from "@/shared";
 
 
 export default function UserRegisterForm() {
     const navigate = useNavigate();
 
     //Estados
-    const [issSubmit, setIsSubmitting] = useState(false);
+    const [isSubmit, setIsSubmitting] = useState(false);
 
     const [ documentTypes, setDocumentTypes] = useState([]);
     //Estado
@@ -59,6 +57,12 @@ const handleSubmit = async (e) => {
 
   // Evita que el formulario recargue la página
   e.preventDefault();
+
+  console.log("FORM DATA:", formData);
+  console.log("BOOLENAS:",{
+    isStaff: formData.isStaff,
+    isActive: formData.isActive
+  })
 
 
   // Validamos los datos del formulario contra el esquema Zod
@@ -265,40 +269,14 @@ const handleSubmit = async (e) => {
                     <Button
                         variant="primary"
                         size="md"
-                        disabled={issSubmit}
+                        disabled={isSubmit}
                     >
-                    {issSubmit ? "Guardando..." : "Guardar"}
+                    {isSubmit ? "Guardando..." : "Guardar"}
                     </Button>
 
-                    <Link to = "/dashboard">
-                        <IconButton>
-                            <SquareArrowRightEnter></SquareArrowRightEnter>
-                        </IconButton> 
-                    </Link>
-
-                    <div className="p-10">
-                        <Dropdown>
-                            <DropdownTrigger>
-                                <IconButton ariaLabel="Menu de usario">
-                                    <Menu/>
-                                </IconButton>
-                            </DropdownTrigger>
-
-                            <DropdownContent className="right-0 w-48">
-                                <DropdownItem>
-                                    <Link to="/auth" className="block w-full">
-                                        Autenticacion
-                                    </Link>
-                                </DropdownItem>
-
-                                <DropdownItem>
-                                    <Link to="/dashboard" className="block w-full">
-                                        Panel de control
-                                    </Link>
-                                </DropdownItem>
-                            </DropdownContent>
-                        </Dropdown>
-                    </div>
+                   
+                    
+                
 
                 </div>
 

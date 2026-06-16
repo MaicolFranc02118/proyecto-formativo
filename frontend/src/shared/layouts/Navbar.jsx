@@ -1,16 +1,23 @@
 import { User } from "lucide-react";
-import { Link } from "react-router-dom";
-import { IconButton, Switch, Dropdown, DropdownTrigger, DropdownItem, DropdownContent } from "@/shared";
-import logo from "@/assets/images/logo-2.png";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import SearchField from "../components/SearchField";
-
+import { IconButton, Dropdown, DropdownTrigger, DropdownItem, DropdownContent, Switch, SearchField } from "@/shared";
+import logo from "@/assets/images/logo-2.png";
+import { logout } from "../../features/auth/service/logoutService";
 
 export default function Navbar() {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/auth");
+    };
+
     const [search, setSearch] = useState("");
 
     const handleSearch = (value) => {
-        console.log("Buscar:", value);
+        console.log("Buscar", value);
     };
 
     const handleClear = () => {
@@ -30,9 +37,9 @@ export default function Navbar() {
                 <div className="flex h-16 items-center justify-between">
 
                     {/* Logo */}
-                    <div className=" hidden sm:block flex items-center ">
+                    <div className="items-center hidden sm:inline-flex">
                         <Link to={"/dashboard/home"} className="text-h1 font-heading">
-                            <img src={logo} alt="logo" className="h-12 w-auto" />   
+                            <img src={logo} alt="Logo" className="h-12" />
                         </Link>
                     </div>
 
@@ -61,36 +68,40 @@ export default function Navbar() {
                                 Multimedia
                             </Link>
                         </li>
+                        <li>
+                            <Link to={"/inicio"} className="hover:text-primary transition">
+                                Contacto
+                            </Link>
+                        </li>
                     </ul>
 
                     {/* Buscador */}
                     <SearchField
                         value={search}
-                        OnChange={setSearch}   // ← aquí
+                        onChange={setSearch}
                         onSubmit={handleSearch}
                         onClear={handleClear}
-                        placeholder="Buscar productos..."
+                        placeholder="Buscar Productos..."
                         size="md"
-                        variant="outline    "
+                        variant="filled"
                         className="w-76"
                     />
 
                     {/* Dropdown usuario */}
-                    <div className="p-10">
+                    <div className="p-2">
                         <Dropdown>
                             <DropdownTrigger>
-                                <IconButton ariaLabel="Menu de usuario">
+                                <IconButton aria-label="Menu de usuario"> 
                                     <User />
                                 </IconButton>
                             </DropdownTrigger>
 
                             <DropdownContent className="right-0 w-48">
                                 <DropdownItem>
-                                    <Link to="/dashboard/auth" className="block w-full">
-                                        Cerrar sesion
+                                    <Link to="/auth" className="block w-full">
+                                        Autenticacion
                                     </Link>
                                 </DropdownItem>
-
                                 <DropdownItem>
                                     <Link to="/dashboard" className="block w-full">
                                         Panel de control
@@ -98,8 +109,11 @@ export default function Navbar() {
                                 </DropdownItem>
                                 <DropdownItem>
                                     <Link to="/dashboard/userList" className="block w-full">
-                                        Gestion de usuarios
+                                        Gestionar Usuarios
                                     </Link>
+                                </DropdownItem>
+                                <DropdownItem onClick={handleLogout}>
+                                    Cerrar sesion
                                 </DropdownItem>
                             </DropdownContent>
                         </Dropdown>

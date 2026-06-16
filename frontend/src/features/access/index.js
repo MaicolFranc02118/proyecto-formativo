@@ -1,0 +1,1 @@
+export {default as acessPage } from "./pages/AcessPage";

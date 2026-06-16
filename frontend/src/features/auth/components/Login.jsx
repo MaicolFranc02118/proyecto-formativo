@@ -1,6 +1,7 @@
 import { useState,  } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { SquareArrowRightEnter, Menu } from "lucide-react";
+import { login } from "../service/authService";
 
 
 import {
@@ -21,11 +22,6 @@ export default function UserRegisterForm() {
 
         userEmail: "",
         userPassword: "",
-
-        //Flags booleanos
-        isStaff: false,
-        isActive: true,
-        isSuperUser: false,
     });
     const [errors, setErrors ] = useState({});
 
@@ -63,7 +59,7 @@ export default function UserRegisterForm() {
      */
 
     // Función que se ejecuta cuando se envía el formulario
-    const handleSubmit = (e) => {
+    const handleSubmit  = async (e) => {
     // Evita que el formulario recargue la página
     e.preventDefault();
 
@@ -80,10 +76,8 @@ export default function UserRegisterForm() {
         // Se recorren para asociar cada error a su campo correspondiente
         result.error.issues.forEach((issue) => {
             // issue.path contiene la ruta del campo que falló
-            const field = issue.path[0];
-
-            // Se guarda el mensaje de error en el objeto fieldErrors
-            fieldErrors[field] = issue.message;
+            // const field = issue.path[0];
+            fieldErrors[issue.path[0]] = issue.message
         });
 
         // Se actualiza el estado de errores para mostrarlos en el formulario
@@ -95,8 +89,18 @@ export default function UserRegisterForm() {
     // Si la validación es exitosa se limpian los errores anteriores
     setErrors({});
 
-    // result.data contiene los datos ya validados por Zod
-    console.log("Usuario válido:", result.data);
+    try {
+        const data = await login(result.data);
+
+        console.log("LOGIN RESPONSE", data);
+
+        sessionStorage.setItem("token", data.token);//clave
+
+        //navigate ("/"); o dasboard 
+        navigate ("/dashboard/userList");
+    } catch (error) {
+        alert(error.message);
+    }
 };
 
     return (

@@ -23,7 +23,7 @@ export const userService = {
 
     //======= Hasheamos la contraseña antes de guardar===================
     const hashedPassword = await bcrypt.hash(data.userPassword, 10);
-    const safeData = { ...data, userPassword: hashedPassword };
+    const userData = { ...data, userPassword: hashedPassword };
 
 
 
@@ -31,6 +31,6 @@ export const userService = {
     // sin agregar ninguna lógica adicional.
     
     //=====cambiamos  DATA POR SAFEDATA======
-    return await userRepository.create(safeData);
+    return await userRepository.create(userData);
   },
 };

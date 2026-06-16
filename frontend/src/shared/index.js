@@ -21,6 +21,7 @@ export { default as Navbar } from "./layouts/Navbar";
 export { default as Switch } from "./components/Switch";
 export {default as SearchField } from "./components/SearchField"
 export {default as DataTable } from "./components/DataTable"
+export {default as ProtectedRoute } from "./auth/ProtectedRoute"
 
 
 
